@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "facilities")
@@ -31,9 +33,8 @@ public class Facility {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "gym_club_id")
-    private GymClub gymClub;
+    @ManyToMany(mappedBy = "facilities")
+    private Set<GymClub> gymClubs;
 
     @Override
     public boolean equals(Object o) {

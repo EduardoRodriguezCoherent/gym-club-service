@@ -10,25 +10,31 @@ INSERT INTO gym_clubs (name, location, discount, annual_revenue) VALUES
 ('Highland Park', 'NY', 0, 150000),
 ('Lakeville', 'NY', 0, 150000);
 
+INSERT INTO facilities (name) VALUES
+('Swimming'),
+('Yoga'),
+('Basketball'),
+('Make up'),
+('Tennis');
 
-INSERT INTO facilities (name, gym_club_id) VALUES
-('Swimming', 1),
-('Swimming', 8),
-('Swimming', 9),
+INSERT INTO gym_club_facilities (gym_club_id, facility_id) VALUES
+(1, 1),  -- Chanhassen has Swimming
+(8, 1),  -- Life Time Swim Maple Grove has Swimming
+(9, 1),  -- Highland Park has Swimming
 
-('Yoga', 1),
-('Yoga', 2),
-('Yoga', 3),
-('Yoga', 4),
-('Yoga', 9),
+(1, 2),  -- Chanhassen has Yoga
+(2, 2),  -- Minnetonka has Yoga
+(3, 2),  -- Crosstown (Eden Prairie) has Yoga
+(4, 2),  -- Eden Prairie Athletic has Yoga
+(9, 2),  -- Highland Park has Yoga
 
-('Basketball', 2),
+(2, 3),  -- Minnetonka has Basketball
 
-('Make up', 3),
-('Make up', 5),
-('Make up', 10),
+(3, 4),  -- Crosstown (Eden Prairie) has Make up
+(5, 4),  -- Oakdale Village Tennis has Make up
+(10, 4), -- Lakeville has Make up
 
-('Tennis', 2),
-('Tennis', 4),
-('Tennis', 5),
-('Tennis', 9);
+(2, 5),  -- Minnetonka has Tennis
+(4, 5),  -- Eden Prairie Athletic has Tennis
+(5, 5),  -- Oakdale Village Tennis has Tennis
+(9, 5);  -- Highland Park has Tennis
