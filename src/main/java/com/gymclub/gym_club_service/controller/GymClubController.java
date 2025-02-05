@@ -2,8 +2,6 @@ package com.gymclub.gym_club_service.controller;
 
 import com.gymclub.gym_club_service.dto.CreateGymClubDto;
 import com.gymclub.gym_club_service.dto.GymClubDto;
-import com.gymclub.gym_club_service.mapper.GymClubMapper;
-import com.gymclub.gym_club_service.model.GymClub;
 import com.gymclub.gym_club_service.service.GymClubService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +21,13 @@ import java.util.List;
 public class GymClubController {
 
     private final GymClubService gymClubService;
-    private final GymClubMapper gymClubMapper;
 
-    public GymClubController(GymClubService gymClubService, GymClubMapper gymClubMapper) {
+    public GymClubController(GymClubService gymClubService) {
         this.gymClubService = gymClubService;
-        this.gymClubMapper = gymClubMapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<GymClubDto>> getAllGymClubs(){
+    public ResponseEntity<List<GymClubDto>> getAllGymClubs() {
         return ResponseEntity.ok(gymClubService.getAll());
     }
 
