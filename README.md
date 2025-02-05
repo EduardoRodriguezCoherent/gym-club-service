@@ -1,2 +1,2 @@
 # gym-club-service
-Microservice part of Gym System Management
+Microservice part of Gym Management System
