@@ -1,18 +1,19 @@
 package com.gymclub.gym_club_service.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "gym_clubs")
@@ -36,9 +37,13 @@ public class GymClub {
     @Column(name = "annual_revenue")
     private long annualRevenue;
 
-    @OneToMany(mappedBy = "gymClub",
-            cascade = CascadeType.ALL)
-    private List<Facility> facilities;
+    @ManyToMany
+    @JoinTable(
+            name = "gym_club_facilities", // name of join table
+            joinColumns = @JoinColumn(name = "gym_club_id"), // GymClub foreign key
+            inverseJoinColumns = @JoinColumn(name = "facility_id") // Facility foreign key
+    )
+    private Set<Facility> facilities;
 
     @Override
     public boolean equals(Object o) {
@@ -84,11 +89,11 @@ public class GymClub {
         this.discount = discount;
     }
 
-    public List<Facility> getFacilities() {
+    public Set<Facility> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<Facility> facilities) {
+    public void setFacilities(Set<Facility> facilities) {
         this.facilities = facilities;
     }
 
