@@ -3,6 +3,7 @@ package com.gymclub.gym_club_service.service.impl;
 import com.gymclub.gym_club_service.dto.CreateGymClubDto;
 import com.gymclub.gym_club_service.dto.GymClubDto;
 import com.gymclub.gym_club_service.mapper.GymClubMapper;
+import com.gymclub.gym_club_service.model.Facility;
 import com.gymclub.gym_club_service.model.GymClub;
 import com.gymclub.gym_club_service.repository.GymClubRepository;
 import com.gymclub.gym_club_service.service.GymClubService;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class GymClubServiceImpl implements GymClubService {
@@ -78,5 +81,17 @@ public class GymClubServiceImpl implements GymClubService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Gym clubs found in: " + location);
         }
         return true;
+    }
+
+    @Override
+    public boolean validateFacilityInClub(Long clubId, Long facilityId) {
+        GymClub gymClub = gymClubRepository.findById(clubId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "GymClub not found with id: " + clubId));
+
+        Set<Long> facilityIds = gymClub.getFacilities().stream()
+                .map(Facility::getId)
+                .collect(Collectors.toSet());
+
+        return facilityIds.contains(facilityId);
     }
 }

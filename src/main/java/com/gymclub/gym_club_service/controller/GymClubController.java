@@ -46,8 +46,14 @@ public class GymClubController {
         return ResponseEntity.ok(gymClubService.update(dto));
     }
 
-    @GetMapping("/validate")
-    public ResponseEntity<Boolean> validateGymClub(@RequestParam String location) {
+    @GetMapping("/validateClubByLocation")
+    public ResponseEntity<Boolean> validateClubByLocation(@RequestParam String location) {
         return ResponseEntity.ok(gymClubService.validateGymClub(location));
+    }
+
+    @GetMapping("/validateClubFacility")
+    public ResponseEntity<Boolean> validateClubFacility(@RequestParam Long clubId,
+                                                        @RequestParam Long facilityId){
+        return ResponseEntity.ok(gymClubService.validateFacilityInClub(clubId, facilityId));
     }
 }

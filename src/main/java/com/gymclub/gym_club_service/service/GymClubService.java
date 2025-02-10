@@ -16,4 +16,6 @@ public interface GymClubService {
     GymClubDto update(GymClubDto entity);
 
     boolean validateGymClub(String location);
+
+    boolean validateFacilityInClub(Long clubId, Long facilityId);
 }
