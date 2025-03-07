@@ -19,7 +19,7 @@ public class JwtServiceImpl implements JwtService {
 
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer ";
-    private static final int substringForAuthHeader = 7;
+    private static final int SUBSTRING_AUHT_HEADER = 7;
 
     @Value("${jwt.secret.key}")
     private String secretKey;
@@ -48,7 +48,7 @@ public class JwtServiceImpl implements JwtService {
     public String extractToken(HttpServletRequest request) {
         String authHeader = request.getHeader(AUTHORIZATION);
         if (authHeader != null && authHeader.startsWith(BEARER)) {
-            return authHeader.substring(substringForAuthHeader);
+            return authHeader.substring(SUBSTRING_AUHT_HEADER);
         }
         return null;
     }

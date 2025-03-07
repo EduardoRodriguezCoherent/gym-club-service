@@ -41,7 +41,7 @@ public class GymClubController {
         return ResponseEntity.status(HttpStatus.CREATED).body(gymClubService.save(dto));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<GymClubDto> updateGymClub(@RequestBody GymClubDto dto) {
         return ResponseEntity.ok(gymClubService.update(dto));
     }

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class GymClubServiceImpl implements GymClubService {
 
+    private static final String CLUB_NOT_FOUND = "GymClub not found with id: ";
     private final GymClubRepository gymClubRepository;
     private final GymClubMapper gymClubMapper;
 
@@ -37,7 +38,7 @@ public class GymClubServiceImpl implements GymClubService {
     public GymClubDto getById(Long id) {
         return gymClubRepository.findById(id)
                 .map(gymClubMapper::toGymClubDto)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "GymClub not found with id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CLUB_NOT_FOUND + id));
     }
 
     @Override
@@ -62,7 +63,7 @@ public class GymClubServiceImpl implements GymClubService {
         GymClub gymClub = gymClubMapper.toGymClub(dto);
 
         if (!gymClubRepository.existsById(gymClub.getId())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "GymClub not found with id: " + gymClub.getId());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, CLUB_NOT_FOUND + gymClub.getId());
         }
         if (gymClub.getName() != null && !gymClub.getName().isBlank()) {
             gymClub.setName(gymClub.getName());
@@ -86,7 +87,7 @@ public class GymClubServiceImpl implements GymClubService {
     @Override
     public boolean validateFacilityInClub(Long clubId, Long facilityId) {
         GymClub gymClub = gymClubRepository.findById(clubId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "GymClub not found with id: " + clubId));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CLUB_NOT_FOUND + clubId));
 
         Set<Long> facilityIds = gymClub.getFacilities().stream()
                 .map(Facility::getId)

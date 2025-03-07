@@ -2,13 +2,13 @@ INSERT INTO gym_clubs (name, location, discount, annual_revenue) VALUES
 ('Chanhassen', 'TX', 10, 100000),
 ('Minnetonka', 'NY', 0, 150000),
 ('Crosstown (Eden Prairie)', 'SF', 0, 120000),
-('Eden Prairie Athletic', 'NY', 15, 150000),
-('Oakdale Village Tennis', 'NY', 0, 150000),
-('Plymouth', 'NY', 0, 150000),
-('Bloomington South', 'NY', 0, 150000),
+('Eden Prairie Athletic', 'BC', 15, 150000),
+('Oakdale Village Tennis', 'ON', 0, 150000),
+('Plymouth', 'CA', 0, 150000),
+('Bloomington South', 'CA', 0, 150000),
 ('Life Time Swim Maple Grove', 'NY', 0, 150000),
-('Highland Park', 'NY', 0, 150000),
-('Lakeville', 'NY', 0, 150000);
+('Highland Park', 'ON', 0, 150000),
+('Lakeville', 'MN', 0, 150000);
 
 INSERT INTO facilities (name) VALUES
 ('Swimming'),
